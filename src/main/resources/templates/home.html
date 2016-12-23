@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{^userName}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Enter your UserName" name="userName">
+    <button type="submit">Login</button>
+</form>
+
+{{/userName}}
+
+{{#userName}}  
+Hello, {{.}}!
+  <form action="/add-message" method="post"> 
+    <input type="text" placeholder="Enter your message" name="messageText" width="200"/> 
+    <button type="submit">Post Message</button> 
+</form> 
+<form action="/logout" method="post">
+    <input type="hidden" name="logout">
+    <button type="submit">Logout</button>
+</form>
+
+
+<ol>
+    {{#submitted}}  
+    <li>{{text}} <form action="/delete-message" method="post" style="display:inline"> 
+        <input type="hidden" value="{{id}}" name="deleteMessage"> 
+    <button type="submit">Delete</button></form>    </li></ol>
+    {{/submitted}}
+
+
+{{/userName}} 
+
+
+
+
+
+
+</body>
+</html>
